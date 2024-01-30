@@ -2,6 +2,6 @@
 
 An instruction for deploying self-hosted Hoppscotch service!
 
-##ENV
+## ENV
 
-##Docker-compose file
+## Docker-compose file
