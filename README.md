@@ -1,2 +1,7 @@
 # Hoppscotch-Setup
-Hoppscotch zum laufen bringen
+
+An instruction for deploying self-hosted Hoppscotch service!
+
+##ENV
+
+##Docker-compose file
