@@ -1,5 +1,5 @@
 # Hoppscotch-Setup
-An instruction for deploying self-hosted Hoppscotch service with Treaffik!
+An instruction for deploying self-hosted Hoppscotch service with Treafik!
 
 > [!NOTE]
 > This documentation is heavily based on the Official documentation. Pls, check out the [official Hoppschotch documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
@@ -125,7 +125,8 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
 
 ## tls config
-###
+for Traefik to work with tls the dynamic config hast to updated.
+### certs-traefik.yml
 ```
 tls:
   stores:
@@ -134,7 +135,6 @@ tls:
         certFile: /etc/certs/<certs file>
         keyFile: /etc/certs/<key file>
 ```
-### vale description
 ## Docker-compose file
 The docker file needs some changes so Hoppscotch will work.
 
@@ -152,3 +152,4 @@ docker exec -it <container_id> /bin/sh
 ```
 pnpx prisma migrate deploy
 ```
+
