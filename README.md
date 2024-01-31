@@ -60,7 +60,7 @@ VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
 + Database
- +`DATABASE_URL`: This is where you add your Postgres database URL.
+  +`DATABASE_URL`: This is where you add your Postgres database URL.
 
 `JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
 `TOKEN_SALT_COMPLEXITY`: Defines the complexity of the SALT that is used for hashing - a higher number implies a more complex salt.
