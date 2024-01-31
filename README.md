@@ -65,7 +65,7 @@ VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
 >  [!CAUTION]
-> Ensure that the environment values are not enclosed within quotes.
+> Ensure that the environment values are not enclosed within quotes. /n
 > like this:`DATABASE_URL=<postgresql://username:password@url:5432/dbname>` not like this `DATABASE_URL='<postgresql://username:password@url:5432/dbname>'`
 
 ### Description of the Values in .env 
