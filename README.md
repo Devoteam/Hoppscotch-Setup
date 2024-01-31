@@ -5,6 +5,7 @@ An instruction for deploying self-hosted Hoppscotch service!
 ## ENV
 
 ### .env example
+This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 ```
 #-----------------------Backend Config------------------------------#
 # Prisma Config
@@ -59,6 +60,7 @@ VITE_BACKEND_API_URL=<backend url>/v1
 VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
+### Description of the Values in .env 
 1. Prisma Config
    - `DATABASE_URL`: This is where you add your Postgres database URL.
 2. Auth Tokens Config
@@ -84,16 +86,16 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - Other Auth
       - If you want to add the other auth methods read the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 5. Rate Limit Config 
-- `RATE_LIMIT_TTL`: The time it takes to refresh the maximum number of requests being received.
-- `RATE_LIMIT_MAX`: The maximum number of requests that Hoppscotch can handle under RATE_LIMIT_TTL.
+   - `RATE_LIMIT_TTL`: The time it takes to refresh the maximum number of requests being received.
+   - `RATE_LIMIT_MAX`: The maximum number of requests that Hoppscotch can handle under RATE_LIMIT_TTL.
 6. Base URLs
-- `VITE_BASE_URL`:  This is the URL where your deployment will be accessible from.
-- `VITE_SHORTCODE`:  A URL to generate shortcodes for sharing, can be the same as VITE_BASE_URL.
-- `VITE_ADMIN_URL`: This is the URL which your Admin page will be accessible from.
+   - `VITE_BASE_URL`:  This is the URL where your deployment will be accessible from.
+   - `VITE_SHORTCODE`:  A URL to generate shortcodes for sharing, can be the same as VITE_BASE_URL.
+   - `VITE_ADMIN_URL`: This is the URL which your Admin page will be accessible from.
 7. Backend URLs
-- `VITE_BACKEND_GQL_URL`: The URL for GraphQL within the instance.
-- `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
-- `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
+   - `VITE_BACKEND_GQL_URL`: The URL for GraphQL within the instance.
+   - `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
+   - `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
 
 ## Docker-compose file
 The docker file needs some changes so Hopscotch will work.
