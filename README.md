@@ -60,14 +60,13 @@ VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
 
-`DATABASE_URL`
+`DATABASE_URL`: This is where you add your Postgres database URL.
 
-`JWT_SECRET`
-`TOKEN_SALT_COMPLEXITY`
-`MAGIC_LINK_TOKEN_VALIDITY`
-`REFRESH_TOKEN_VALIDITY`
-`ACCESS_TOKEN_VALIDITY`
-`SESSION_SECRET`
+`JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
+`TOKEN_SALT_COMPLEXITY`: Defines the complexity of the SALT that is used for hashing - a higher number implies a more complex salt.
+`MAGIC_LINK_TOKEN_VALIDITY`: Duration of the validity of the magic link being sent to sign in to Hoppscotch (in days).
+`REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
+`ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
 
 `REDIRECT_URL`
 `WHITELISTED_ORIGINS`
