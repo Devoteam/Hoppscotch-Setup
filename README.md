@@ -17,7 +17,7 @@ mkdir tlsconfig
 After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used with TLS encryption.
 
 The service desk (It) asked to create the Certificates for the Server. The Certificates should be stored in the Cloned folder in a certs folder.
-in the tlsconfig folder [Contribution guidelines for this project](README.md)
+in the tlsconfig folder [Contribution guidelines for this project](README.md/tls config)
 
    
 ## env
@@ -110,7 +110,7 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
       - `GOOGLE_CALLBACK_URL`:
       - `GOOGLE_SCOPE`:
    - Other Auth
-      - If you want to add the other auth methods read the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+      - If you want to add the other auth methods read the [official Hoppschotch documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 5. Rate Limit Config 
    - `RATE_LIMIT_TTL`: The time it takes to refresh the maximum number of requests being received.
    - `RATE_LIMIT_MAX`: The maximum number of requests that Hoppscotch can handle under RATE_LIMIT_TTL.
