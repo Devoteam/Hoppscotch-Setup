@@ -5,7 +5,9 @@ An instruction for deploying self-hosted Hoppscotch service!
 ## ENV
 
 ### .env example
-This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+> [!NOTE]
+> This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+
 ```
 #-----------------------Backend Config------------------------------#
 # Prisma Config
