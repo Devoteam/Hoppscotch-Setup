@@ -17,7 +17,7 @@ mkdir tlsconfig
 After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used with TLS encryption.
 
 The service desk (It) asked to create the Certificates for the Server. The Certificates should be stored in the Cloned folder in a certs folder.
-in the tlsconfig folder [Contribution guidelines for this project](README.md/tls config)
+in the tlsconfig folder [tls-config](README.md#tls-config) needs all the paths to the Certificates.
 
    
 ## env
@@ -25,7 +25,7 @@ Copy the contents of the .env.example file found in the root directory of the cl
 
 ### .env example
 > [!NOTE]
-> This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+> This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the [official Hoppschotch documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 
 >  [!CAUTION]
 > Ensure that the environment values are not enclosed within quotes.
