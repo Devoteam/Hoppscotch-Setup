@@ -2,7 +2,7 @@
 An instruction for deploying self-hosted Hoppscotch service with Treaffik!
 
 > [!NOTE]
-> This documentation is heavily based on the Official documentation. Pls, check out the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+> This documentation is heavily based on the Official documentation. Pls, check out the [official Hoppschotch documentation] (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 
 ## Setup
 For the deployment, some stuff is needed. 
