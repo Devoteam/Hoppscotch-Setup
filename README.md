@@ -5,13 +5,21 @@ An instruction for deploying self-hosted Hoppscotch service with Treaffik!
 > This documentation is heavily based on the Official documentation. Pls, check out the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 
 ## Setup
-For the deployment, some stuff is needed. First, you need the official repository of Hopscotch,
+For the deployment, some stuff is needed. 
+First, you need the official repository of Hopscotch.
 
 ```
 git clone https://github.com/hoppscotch/hoppscotch.git
+cd hoppscotch
+mkdir certs
+mkdir tlsconfig
 ```
+After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used with TLS encryption.
 
+The service desk (It) asked to create the Certificates for the Server. The Certificates should be stored in the Cloned folder in a certs folder.
+in the tlsconfig folder [Contribution guidelines for this project](docs/README.md)
 
+   
 ## env
 Copy the contents of the .env.example file found in the root directory of the cloned repository to .env or use the provided .env.example file of this repository and add your values for the environment variables.
 
@@ -115,6 +123,16 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
    - `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
 
+## tls config
+```
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /etc/certs/devli106.pem
+        keyFile: /etc/certs/devli106_key.pem
+
+```
 ## Docker-compose file
 The docker file needs some changes so Hopscotch will work.
 
