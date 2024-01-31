@@ -17,7 +17,7 @@ mkdir tlsconfig
 After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used with TLS encryption.
 
 The service desk (It) asked to create the Certificates for the Server. The Certificates should be stored in the Cloned folder in a certs folder.
-in the tlsconfig folder [Contribution guidelines for this project](docs/README.md)
+in the tlsconfig folder [Contribution guidelines for this project](README.md)
 
    
 ## env
