@@ -71,7 +71,7 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `REDIRECT_URL`
    - `WHITELISTED_ORIGINS`
 4. Auth from user
-   - `VITE_ALLOWED_AUTH_PROVIDERS`
+   - `VITE_ALLOWED_AUTH_PROVIDERS`: Allows you to specify which auth providers you want to enable. Options are Google, Github, Microsoft and email.
    - Github Auth
       - `GITHUB_CLIENT_ID`
       - `GITHUB_CLIENT_SECRET`
@@ -81,7 +81,9 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
       - `GOOGLE_CLIENT_SECRET`
       - `GOOGLE_CALLBACK_URL`
       - `GOOGLE_SCOPE`
-
+   - Other Auth
+      - If you want to add the other auth methods read official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build)    
+     
 - `RATE_LIMIT_TTL`
 - `RATE_LIMIT_MAX`
 
