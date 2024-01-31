@@ -59,17 +59,17 @@ VITE_BACKEND_API_URL=<backend url>/v1
 VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
-1 Database
-  - `DATABASE_URL`: This is where you add your Postgres database URL.
-
-`JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
-`TOKEN_SALT_COMPLEXITY`: Defines the complexity of the SALT that is used for hashing - a higher number implies a more complex salt.
-`MAGIC_LINK_TOKEN_VALIDITY`: Duration of the validity of the magic link being sent to sign in to Hoppscotch (in days).
-`REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
-`ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
-
-`REDIRECT_URL`
-`WHITELISTED_ORIGINS`
+1. Prisma Config
+   - `DATABASE_URL`: This is where you add your Postgres database URL.
+2. Auth Tokens Config
+   - `JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
+   - `TOKEN_SALT_COMPLEXITY`: Defines the complexity of the SALT that is used for hashing - a higher number implies a more complex salt.
+   - `MAGIC_LINK_TOKEN_VALIDITY`: Duration of the validity of the magic link being sent to sign in to Hoppscotch (in days).
+   - `REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
+   - `ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
+3. Hoppscotch App Domain Config
+-`REDIRECT_URL`
+-`WHITELISTED_ORIGINS`
 
 `VITE_ALLOWED_AUTH_PROVIDERS`
 
