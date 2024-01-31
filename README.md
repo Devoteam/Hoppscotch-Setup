@@ -3,12 +3,15 @@
 An instruction for deploying self-hosted Hoppscotch service!
 
 ## ENV
-
-### .env example
 Copy the contents of the .env.example file found in the root directory of the cloned repository to .env or use the provided .env.example file of this reposetorie and add your values for the environment variables.
+### .env example
+
 
 > [!NOTE]
 > This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+>  [!CAUTION]
+> Ensure that the environment values are not enclosed within quotes.
+> like this:`DATABASE_URL=<postgresql://username:password@url:5432/dbname>` not like this `DATABASE_URL='<postgresql://username:password@url:5432/dbname>'`
 
 ```
 #-----------------------Backend Config------------------------------#
@@ -64,9 +67,6 @@ VITE_BACKEND_API_URL=<backend url>/v1
 VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
->  [!CAUTION]
-> Ensure that the environment values are not enclosed within quotes.
-> like this:`DATABASE_URL=<postgresql://username:password@url:5432/dbname>` not like this `DATABASE_URL='<postgresql://username:password@url:5432/dbname>'`
 
 ### Description of the Values in .env 
 1. Prisma Config
