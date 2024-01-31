@@ -3,7 +3,7 @@
 An instruction for deploying self-hosted Hoppscotch service!
 
 ## ENV
-Copy the contents of the .env.example file found in the root directory of the cloned repository to .env or use the provided .env.example file of this reposetorie and add your values for the environment variables.
+Copy the contents of the .env.example file found in the root directory of the cloned repository to .env or use the provided .env.example file of this repository and add your values for the environment variables.
 ### .env example
 
 
