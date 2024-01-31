@@ -1,12 +1,18 @@
 # Hoppscotch-Setup
+An instruction for deploying self-hosted Hoppscotch service with Treaffik!
 
-An instruction for deploying self-hosted Hoppscotch service!
+> [!NOTE]
+> This documentation is heavily based on the Official documentation. Pls, check out the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+
+## Setup
+For the deployment, some stuff is needed. First you need the official repository of Hopscotch,
+
+
 
 ## env
 Copy the contents of the .env.example file found in the root directory of the cloned repository to .env or use the provided .env.example file of this repository and add your values for the environment variables.
+
 ### .env example
-
-
 > [!NOTE]
 > This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 
