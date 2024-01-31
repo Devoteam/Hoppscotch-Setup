@@ -59,7 +59,7 @@ VITE_BACKEND_API_URL=<backend url>/v1
 VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
-+ Database
+1 Database
   +`DATABASE_URL`: This is where you add your Postgres database URL.
 
 `JWT_SECRET`, `SESSION_SECRET`: Secret Keys for security purposes.
