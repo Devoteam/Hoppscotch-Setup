@@ -13,8 +13,13 @@ git clone https://github.com/hoppscotch/hoppscotch.git
 cd hoppscotch
 mkdir certs
 mkdir tlsconfig
+git clone
+cd
+cp
+cp
+rm -r
 ```
-After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used with TLS encryption.
+After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used TLS encryption.
 
 The service desk (It) asked to create the Certificates for the Server. The Certificates should be stored in the Cloned folder in a certs folder.
 in the tlsconfig folder [tls-config](README.md#tls-config) needs all the paths to the Certificates.
@@ -124,15 +129,16 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
 
 ## tls config
+###
 ```
 tls:
   stores:
     default:
       defaultCertificate:
-        certFile: /etc/certs/devli106.pem
-        keyFile: /etc/certs/devli106_key.pem
-
+        certFile: /etc/certs/<certs file>
+        keyFile: /etc/certs/<key file>
 ```
+### vale description
 ## Docker-compose file
 The docker file needs some changes so Hopscotch will work.
 
