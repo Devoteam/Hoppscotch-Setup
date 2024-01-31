@@ -3,6 +3,8 @@
 An instruction for deploying self-hosted Hoppscotch service!
 
 ## ENV
+
+### .env example
 ```
 #-----------------------Backend Config------------------------------#
 # Prisma Config
@@ -57,6 +59,40 @@ VITE_BACKEND_API_URL=<backend url>/v1
 VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
+
+`DATABASE_URL`
+
+`JWT_SECRET`
+`TOKEN_SALT_COMPLEXITY`
+`MAGIC_LINK_TOKEN_VALIDITY`
+`REFRESH_TOKEN_VALIDITY`
+`ACCESS_TOKEN_VALIDITY`
+`SESSION_SECRET`
+
+`REDIRECT_URL`
+`WHITELISTED_ORIGINS`
+
+`VITE_ALLOWED_AUTH_PROVIDERS`
+
+`GITHUB_CLIENT_ID`
+`GITHUB_CLIENT_SECRET`
+`GITHUB_CALLBACK_URL`
+
+`GOOGLE_CLIENT_ID`
+`GOOGLE_CLIENT_SECRET`
+`GOOGLE_CALLBACK_URL`
+`GOOGLE_SCOPE`
+
+`RATE_LIMIT_TTL`
+`RATE_LIMIT_MAX`
+
+`VITE_BASE_URL`
+`VITE_SHORTCODE`
+`VITE_ADMIN_URL`
+`VITE_BACKEND_GQL_URL`
+`VITE_BACKEND_WS_URL`
+`VITE_BACKEND_API_URL`
+
 ## Docker-compose file
 The docker file needs some changes so Hopscotch will work.
 
