@@ -9,6 +9,7 @@ Copy the contents of the .env.example file found in the root directory of the cl
 
 > [!NOTE]
 > This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+
 >  [!CAUTION]
 > Ensure that the environment values are not enclosed within quotes.
 > like this:`DATABASE_URL=<postgresql://username:password@url:5432/dbname>` not like this `DATABASE_URL='<postgresql://username:password@url:5432/dbname>'`
