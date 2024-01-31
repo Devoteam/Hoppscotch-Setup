@@ -68,13 +68,13 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
    - `ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
 3. Hoppscotch App Domain Config
-- `REDIRECT_URL`
-- `WHITELISTED_ORIGINS`
-- `VITE_ALLOWED_AUTH_PROVIDERS`
-
-`GITHUB_CLIENT_ID`
-`GITHUB_CLIENT_SECRET`
-`GITHUB_CALLBACK_URL`
+   - `REDIRECT_URL`
+   - `WHITELISTED_ORIGINS`
+   - `VITE_ALLOWED_AUTH_PROVIDERS`
+   - Github Auth
+     - `GITHUB_CLIENT_ID`
+     - `GITHUB_CLIENT_SECRET`
+     - `GITHUB_CALLBACK_URL`
 
 `GOOGLE_CLIENT_ID`
 `GOOGLE_CLIENT_SECRET`
