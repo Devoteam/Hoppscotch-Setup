@@ -13,11 +13,6 @@ git clone https://github.com/hoppscotch/hoppscotch.git
 cd hoppscotch
 mkdir certs
 mkdir tlsconfig
-git clone
-cd
-cp
-cp
-rm -r
 ```
 After cloning the official Hopscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used TLS encryption.
 
