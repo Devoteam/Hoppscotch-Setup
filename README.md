@@ -68,31 +68,32 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `REFRESH_TOKEN_VALIDITY`: Validity of the refresh token for auth (in ms).
    - `ACCESS_TOKEN_VALIDITY`: Validity of the access token for auth (in ms).
 3. Hoppscotch App Domain Config
-   - `REDIRECT_URL`
-   - `WHITELISTED_ORIGINS`
-4. Auth from user
-   - `VITE_ALLOWED_AUTH_PROVIDERS`: Allows you to specify which auth providers you want to enable. Options are Google, Github, Microsoft and email.
-   - Github Auth
-      - `GITHUB_CLIENT_ID`
-      - `GITHUB_CLIENT_SECRET`
-      - `GITHUB_CALLBACK_URL`
-   - Google Auth
-      - `GOOGLE_CLIENT_ID`
-      - `GOOGLE_CLIENT_SECRET`
-      - `GOOGLE_CALLBACK_URL`
-      - `GOOGLE_SCOPE`
+   - `REDIRECT_URL`: This is a fallback URL to debug when the actual redirects fail.
+   - `WHITELISTED_ORIGINS`: URLs of Hoppscotch backend, admin dashboard, and the frontend app.
+4. Auth config
+   - `VITE_ALLOWED_AUTH_PROVIDERS`: Allows you to specify which auth providers you want to enable. Options are Google, Github, Microsoft, and email.
+   - Github Auth Config
+      - `GITHUB_CLIENT_ID`: 
+      - `GITHUB_CLIENT_SECRET`:
+      - `GITHUB_CALLBACK_URL`:
+   - Google Auth Config
+      - `GOOGLE_CLIENT_ID`:
+      - `GOOGLE_CLIENT_SECRET`:
+      - `GOOGLE_CALLBACK_URL`:
+      - `GOOGLE_SCOPE`:
    - Other Auth
-      - If you want to add the other auth methods read official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build)    
-     
-- `RATE_LIMIT_TTL`
-- `RATE_LIMIT_MAX`
-
-- `VITE_BASE_URL`
-- `VITE_SHORTCODE`
-- `VITE_ADMIN_URL`
-- `VITE_BACKEND_GQL_URL`
-- `VITE_BACKEND_WS_URL`
-- `VITE_BACKEND_API_URL`
+      - If you want to add the other auth methods read the official documentation (https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+5. Rate Limit Config 
+- `RATE_LIMIT_TTL`: The time it takes to refresh the maximum number of requests being received.
+- `RATE_LIMIT_MAX`: The maximum number of requests that Hoppscotch can handle under RATE_LIMIT_TTL.
+6. Base URLs
+- `VITE_BASE_URL`:  This is the URL where your deployment will be accessible from.
+- `VITE_SHORTCODE`:  A URL to generate shortcodes for sharing, can be the same as VITE_BASE_URL.
+- `VITE_ADMIN_URL`: This is the URL which your Admin page will be accessible from.
+7. Backend URLs
+- `VITE_BACKEND_GQL_URL`: The URL for GraphQL within the instance.
+- `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
+- `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
 
 ## Docker-compose file
 The docker file needs some changes so Hopscotch will work.
