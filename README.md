@@ -29,7 +29,7 @@ Copy the contents of the .env.example file found in the root directory of the cl
 
 >  [!CAUTION]
 > Ensure that the environment values are not enclosed within quotes.
-> like this:`DATABASE_URL=<postgresql://username:password@url:5432/dbname>` not like this `DATABASE_URL='<postgresql://username:password@url:5432/dbname>'`
+> like this:`REDIRECT_URL=<base url>` not like this `REDIRECT_URL=<base url>'`
 
 ```
 #-----------------------Backend Config------------------------------#
