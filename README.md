@@ -29,7 +29,7 @@ Copy the contents of the .env.example file found in the root directory of the cl
 
 >  [!CAUTION]
 > Ensure that the environment values are not enclosed within quotes.
-> like this:`REDIRECT_URL=<base url>` not like this `REDIRECT_URL=<base url>'`
+> like this:`REDIRECT_URL=<base url>`    not like this `REDIRECT_URL=<base url>'`
 
 ```
 #-----------------------Backend Config------------------------------#
