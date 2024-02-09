@@ -1,0 +1,119 @@
+version: "3.7"
+
+services:
+  reverse-proxy:
+    # The official v2 Traefik docker image
+    image: traefik:v3.0
+    networks:
+      - hoppscotch
+    command:
+      - --api.dashboard=true
+      - --api.insecure=true
+      # Logs can be found in /var/log/traefik/ on the host
+      - --log.level=DEBUG
+      - --log.filepath=/var/log/traefik.log
+      - --accesslog.filepath=/var/log/traefik-access.log
+      - --accesslog=true
+      - --providers.docker.exposedByDefault=true
+      - --entrypoints.web.address=:80
+      - --entrypoints.web.http.redirections.entrypoint.to=websecure
+      - --entryPoints.web.http.redirections.entrypoint.scheme=https
+      - --entrypoints.websecure.address=:443
+      - --providers.file.filename=/etc/traefik/dynamic/certs-traefik.yml
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/log/traefik/:/var/log
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./tlsconf/certs-traefik.yml:/etc/traefik/dynamic/certs-traefik.yml
+      - ./certs:/etc/certs/
+    labels: 
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik-dashboard.rule=Host(`dashboard.HOPPSCOTCH_DOMAIN`)"
+      - "traefik.http.routers.traefik-dashboard.entrypoints=websecure"
+      - "traefik.http.services.traefik-dashboard.loadbalancer.server.port=8080"
+      - "traefik.http.routers.traefik-dashboard.tls=true"
+      - "traefik.http.middlewares.traefik-dashboard.basicauth.users=TRAEFIK_HASHED_DASHBOARD_PASSWORD"  # To see how username:password need to be hashed: https://doc.traefik.io/traefik/middlewares/http/basicauth/
+      - "traefik.http.routers.traefik-dashboard.middlewares=traefik-dashboard"
+
+  # The service that spins up all 3 services at once in one container
+  # Frontend listens on port 3000
+  # Admin listens on port 3100
+  # Backend listens on port 3170
+  hoppscotch-aio:
+    restart: unless-stopped
+    container_name: hoppscotch-aio
+    networks:
+      - hoppscotch
+    build:
+      dockerfile: prod.Dockerfile
+      context: .
+      target: aio
+    env_file:
+      - ./.env
+    depends_on:
+      hoppscotch-db:
+        condition: service_healthy
+    labels: 
+      - "traefik.enable=true"
+    # Frontend rules
+      - "traefik.http.routers.hoppscotch-frontend.rule=Host(`HOPPSCOTCH_DOMAIN`)"
+      - "traefik.http.routers.hoppscotch-frontend.entrypoints=websecure"
+      - "traefik.http.services.hoppscotch-frontend.loadbalancer.server.port=3000"
+      - "traefik.http.routers.hoppscotch-frontend.service=hoppscotch-frontend"
+      - "traefik.http.routers.hoppscotch-frontend.tls=true"
+    # Admin rules
+      - "traefik.http.routers.hoppscotch-sh-admin.rule=Host(`admin.HOPPSCOTCH_DOMAIN`)"
+      - "traefik.http.routers.hoppscotch-sh-admin.entrypoints=websecure"
+      - "traefik.http.services.hoppscotch-sh-admin.loadbalancer.server.port=3100"
+      - "traefik.http.routers.hoppscotch-sh-admin.service=hoppscotch-sh-admin"
+      - "traefik.http.routers.hoppscotch-sh-admin.tls=true"
+    # Backend rules
+      - "traefik.http.routers.hoppscotch-backend.rule=Host(`HOPPSCOTCH_DOMAIN`) && PathPrefix(`/backend`)"
+      - "traefik.http.routers.hoppscotch-backend.entrypoints=websecure"
+      - "traefik.http.services.hoppscotch-backend.loadbalancer.server.port=3170"
+      - "traefik.http.routers.hoppscotch-backend.service=hoppscotch-backend"
+      - "traefik.http.routers.hoppscotch-backend.tls=true"
+    # Backend middleware
+      - "traefik.http.middlewares.backend-strip.stripprefix.prefixes=/backend"
+      - "traefik.http.routers.hoppscotch-backend.middlewares=backend-strip"
+
+  hoppscotch-proxy:
+    container_name: hoppscotch-proxy
+    networks:
+      - hoppscotch
+    build:
+      dockerfile: ../proxyscotch/Dockerfile
+      context: ../proxyscotch
+    labels:
+      - "traefik.http.routers.hoppscotch-proxy.rule=Host(`proxy.HOPPSCOTCH_DOMAIN`)"
+      - "traefik.http.routers.hoppscotch-proxy.entrypoints=websecure"
+      - "traefik.http.services.hoppscotch-proxy.loadbalancer.server.port=9159"
+      - "traefik.http.routers.hoppscotch-proxy.service=hoppscotch-proxy"
+      - "traefik.http.routers.hoppscotch-proxy.tls=true"
+  
+  hoppscotch-db:
+    image: postgres:15
+    user: postgres
+    networks:
+      - hoppscotch
+    environment:
+      # The default user defined by the docker image
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: POSTGRES_PASSWORD_VALUE
+      POSTGRES_DB: hoppscotch
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "sh -c 'pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}'"
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+networks:
+  hoppscotch:
+    name: hoppscotch

@@ -1,0 +1,6 @@
+tls:
+  certificates:
+    - certFile: /etc/certs/main.pem    
+      keyFile: /etc/certs/main.key     
+    - certFile: /etc/certs/wildcard.pem
+      keyFile: /etc/certs/wildcard.key 

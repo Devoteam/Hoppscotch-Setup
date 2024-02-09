@@ -2,35 +2,107 @@
 An instruction for deploying self-hosted Hoppscotch service with Treafik!
 
 > [!NOTE]
-> This documentation is heavily based on the Official documentation. Pls, check out the [official Hoppschotch documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+> This documentation is heavily based on the Official documentation. Please, check out the [Official Hoppschotch Documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 
+# Table of Contents
+1. [Setup](#setup)
+1. [Docker Compose File](#docker-compose-file)
+1. [TLS Configuration](#tls-configuration)
+    * [Example Configuration](#example-configuration)
+1. [Proxy](#proxy)
+1. [Hoppscotch Environment File](#hoppscotch-environment-file)
+    * [Example Environment File Configuration](#example-environment-file-configuration)
+    * [Description of Values](#description-of-values)  
+1. [Migration](#migration)
+1. [Sensitive Values](#sensitive-values)
 ## Setup
-For the deployment, some preparation is needed. 
-First, you need the official repository of Hoppscotch.
+1. First, you need the official Hoppscotch repository.
 
 ```
 git clone https://github.com/hoppscotch/hoppscotch.git
-cd hoppscotch
-mkdir certs
-mkdir tlsconfig
 ```
-After cloning the official Hoppscotch repository it is recommended to use the yml file that this repository delivers because Treaffik is preconfigured and only small changes have to be made so that Hoppschotch can be used TLS encryption.
+2. After cloning the official Hoppscotch repository you should clone the contents of this repository aswell. 
 
-The service desk (It) asked to create the Certificates for the Server. The Certificates should be stored in the Cloned folder in a certs folder.
-in the tlsconfig folder [tls-config](README.md#tls-config) needs all the paths to the Certificates.
+```
+git clone https://github.com/Devoteam/Hoppscotch-Setup.git
+```
+3. Clone the Hoppscotch-Proxy repository
+```
+git clone https://github.com/hoppscotch/proxyscotch.git
+```
+* Your directory structure should look like this: 
+```text
+    opt/                                      <- repository root
+    ├─ hoppscotch/                            <- Official hoppscotch repository  
+    ├─ Hoppscotch-Setup/                      <- This repository
+    ├─ proxyscotch/                           <- Official Hoppscotch-Proxy repository
+```
+4. Replace the contents of the Hoppscotch repository with the contents of this repository
+5. Setup the Secrets stored in the ```hoppscotch.kdbx``` file as Environment Variables on the host system
+```
+export GITHUB_CLIENT_ID_VALUE='*********'
+```  
+* hoppscotch.kdbx is sent via E-Mail. If you want to setup the values yourself, you can check the required Environment Variable Key names in setup.sh ENV_KEYS and DOCKER_KEYS 
+6. Run setup.sh from within the hoppscotch directory, to fill in the Environbment Variables from the previous step in the docker-compose and .env files. For more information see [Sensitive Values](#sensitive-values)
+7. Run ```docker-compose -f docker-compose.yml up``` to start the treafik, hoppscotch, proxy and postgres containers. 
+8. Run ```docker run -it --network hoppscotch --env-file .env hoppscotch-hoppscotch-aio pnpx prisma migrate deploy``` to setup the database.
+9. Wait for the hoppscotch-aio container to become healthy  
+10. You can visit the hoppscotch app on http://HOPPSCOTCH_DOMAIN.com/ and admin dashboard on http://admin.HOPPSCOTCH_DOMAIN/
+11. If you get a `Could not send request` issues, please configure the [Interceptor](#proxy)
 
-   
-## env
-Copy the contents of the .env.example file found in the root directory of the cloned repository to .env or use the provided .env.example file of this repository and add your values for the environment variables.
-
-### .env example
 > [!NOTE]
-> This is only an example of the .env. This env only has minor changes but if you need more information or other Auth methods pls check on the [official Hoppschotch documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
+> Hoppschotch can be set up to use TLS, see [TLS configuration](#tls-configuration).
+
+## Docker-compose file
+Hoppscotch all-in-one docker-compose.yml with Traefik reverse-proxy and hoppscotch-proxy integration. 
+
+We use Traefik docker-compose labels to route requests to the proxy, frontend, admin and backend pages. 
+>  [!CAUTION]
+> The admin page cannot be served as a folder of the main domain, it has to have its own domain name, E.G. ```admin.mydomain.com```
+
+## TLS configuration
+By default certificates have to be uploaded to the ```/hoppscotch/certs``` directory, the docker-compose then creates a volume ```/hoppscotch/certs:/etc/certs```
+
+The TLS certificate needs to be in the ```.pem``` format. The service desk (IT Team) create the Certificates for the Server. 
+>  [!CAUTION]
+> The Certificates should only be stored on the server. 
+
+Treafiks TLS defaults are defined in the ```./tlsconf/certs-traefik.yml```.
+
+The Traefik Container expects a certificate location of ```/etc/certs/```, it can be configured from ```/tlsconf/certs-traefik.yml```
+
+### Example configuration
+```
+tls:
+  certificates:
+    - certFile: /etc/certs/cert1
+      keyFile: /etc/certs/key1
+    - certFile: /etc/certs/cert2
+      keyFile: /etc/certs/key2
+
+```
+## Proxy
+Use of Hoppscotch requires a proxy due to CORS, possible options are the [Hoppscotch Browser Extension](https://docs.hoppscotch.io/documentation/features/interceptor), or [Proxyscotch](https://github.com/hoppscotch/proxyscotch).
+
+The docker-compose file spins up a Proxyscotch container on `proxy.HOPPSCOTCH_DOMAIN`.
+
+To use the proxy go to Settings>Interceptor, enable the `Use the proxy middleware to send requests` and change the Proxy URL to: https://proxy.HOPPSCOTCH_DOMAIN
+
+## Hoppscotch environment file
+All the environment variables required for Hoppscotch to work are provided in the ```.env``` file. 
+
+> [!NOTE]
+> This is only an example of the ```.env``` file with placeholders, as to not commit any secrets in plain text to the git repository.
+> Secrets are stored in the KeePass ```hoppscotch.kdbx``` file. 
+> To easily replace the placeholders with the correct values you can use the bash script ```setup.sh```  
+> Currently only Google Auth and GitHub Auth are configured, if further Auth methods need to be setup, please refer to the [official Hoppschotch documentation](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build).
 
 >  [!CAUTION]
 > Ensure that the environment values are not enclosed within quotes.
-> like this:`REDIRECT_URL=<base url>` not like this `REDIRECT_URL='<base url>'`
+> Should look like this:`REDIRECT_URL=<base url>` and not like this `REDIRECT_URL='<base url>'`
 
+
+### Example environment file configuration
 ```
 #-----------------------Backend Config------------------------------#
 # Prisma Config
@@ -86,7 +158,7 @@ VITE_APP_TOS_LINK=https://docs.hoppscotch.io/support/terms
 VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
 ```
 
-### Description of the Values in .env 
+### Description of values 
 1. Prisma Config
    - `DATABASE_URL`: This is where you add your Postgres database URL.
 2. Auth Tokens Config
@@ -124,36 +196,25 @@ VITE_APP_PRIVACY_POLICY_LINK=https://docs.hoppscotch.io/support/privacy
    - `VITE_BACKEND_WS_URL`: The URL for WebSockets within the instance.
    - `VITE_BACKEND_API_URL`: The URL for REST APIs within the instance.
 
-## tls config
-for Traefik to work with tls the dynamic config hast to updated.
-### certs-traefik.yml
-```
-tls:
-  stores:
-    default:
-      defaultCertificate:
-        certFile: /etc/certs/<certs file>
-        keyFile: /etc/certs/<key file>
-```
-## Docker-compose file
-The docker file needs some changes so Hoppscotch will work.
-
-### Changes in the docker file
+## Migration
+If you are getting `Status Code 500` from the backend, when for example trying to log in, you should [run a migration](https://docs.hoppscotch.io/documentation/self-host/community-edition/install-and-build#running-migrations)
 
 ```
+docker exec -it hoppscotch-aio pnpx prisma migrate deploy
 ```
 
-```
-docker-compose -f <file.yaml> up
-```
+## Sensitive values
+As to not store any sensitive values in this git repository, some values in the ```.env``` and ```docker-compose.yml``` files have been replaced with placeholders. You can use the ```setup.sh``` bash script to automatically set up these values from local environment variables.
 
-### Migration
+Before you run ```setup.sh``` you need to have defined the following environment variables: 
 
-```
-docker exec -it <container_id> /bin/sh
-```
- 
-```
-pnpx prisma migrate deploy
-```
+* GITHUB_CLIENT_ID_VALUE
+* GITHUB_CLIENT_ID_SECRET_VALUE
+* GOOGLE_CLIENT_ID_VALUE
+* GOOGLE_CLIENT_SECRET_VALUE
+* POSTGRES_PASSWORD_VALUE
+* TRAEFIK_HASHED_DASHBOARD_PASSWORD
+* HOPPSCOTCH_DOMAIN
 
+>  [!CAUTION]
+> Make sure not to commit any sensitive information to this repository.
